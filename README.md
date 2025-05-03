@@ -1,59 +1,79 @@
-# Airflow DBT Docker Compose Example
+# Exemplo de Integração Airflow DBT com Docker Compose
 
-This project demonstrates how to integrate DBT (Data Build Tool) with Apache Airflow using Docker Compose. It includes a sample DBT project and an Airflow DAG that runs DBT commands.
+Este projeto demonstra como integrar o DBT (Data Build Tool) com o Apache Airflow utilizando Docker Compose. O projeto inclui um exemplo de projeto DBT e um DAG do Airflow que executa comandos DBT para orquestrar a transformação de dados.
 
-## Project Structure
+## Sobre o Projeto
 
-- `dags/`: Contains Airflow DAG files
-  - `dbt_example_dag.py`: A sample DAG that runs DBT commands
-- `dbt_project/`: Contains the DBT project files
-  - `dbt_project.yml`: DBT project configuration
-  - `profiles.yml`: DBT connection profiles
-  - `models/`: Contains DBT models
-    - `example/`: Example models
-      - `sample_model.sql`: A sample DBT model
-      - `schema.yml`: Documentation for the sample model
-- `docker-compose.yaml`: Docker Compose configuration for Airflow
-- `.env`: Environment variables for Docker Compose
-- `requirements.txt`: Python dependencies
+Este ambiente de desenvolvimento permite criar pipelines de dados completos, onde o Airflow orquestra a execução de transformações DBT. O DBT (Data Build Tool) é uma ferramenta moderna para transformação de dados que permite escrever transformações em SQL e gerenciar dependências, documentação e testes de forma eficiente. O Apache Airflow é uma plataforma de orquestração de fluxos de trabalho que permite programar, monitorar e gerenciar pipelines de dados complexos.
 
-## Prerequisites
+A integração dessas ferramentas proporciona:
+- Orquestração confiável de transformações de dados
+- Versionamento de código SQL
+- Documentação automática
+- Testes de qualidade de dados
+- Monitoramento e alertas
+
+## Estrutura do Projeto
+
+- `dags/`: Contém os arquivos DAG do Airflow
+  - `dbt_example_dag.py`: Um DAG de exemplo que executa comandos DBT
+- `dbt_project/`: Contém os arquivos do projeto DBT
+  - `dbt_project.yml`: Configuração do projeto DBT
+  - `profiles.yml`: Perfis de conexão do DBT
+  - `models/`: Contém os modelos DBT
+    - `example/`: Modelos de exemplo
+      - `sample_model.sql`: Um modelo DBT de exemplo
+      - `schema.yml`: Documentação para o modelo de exemplo
+- `docker-compose.yaml`: Configuração do Docker Compose para o Airflow
+- `.env`: Variáveis de ambiente para o Docker Compose
+- `requirements.txt`: Dependências Python
+- `Dockerfile`: Configuração para construção da imagem Docker personalizada
+
+## Pré-requisitos
 
 - Docker
 - Docker Compose
 
-## Getting Started
+## Como Iniciar
 
-1. Clone this repository
-2. Start the Docker Compose environment:
+1. Clone este repositório
+2. Inicie o ambiente Docker Compose:
 
 ```bash
 docker-compose up -d
 ```
 
-3. Access the Airflow web interface at http://localhost:8080 (username: airflow, password: airflow)
-4. Enable the `dbt_example` DAG to run the DBT commands
+3. Acesse a interface web do Airflow em http://localhost:8080 (usuário: airflow, senha: airflow)
+4. Ative o DAG `dbt_example` para executar os comandos DBT
 
-## How It Works
+## Como Funciona
 
-The sample DBT project creates a simple view based on the `information_schema.tables` in the PostgreSQL database. The Airflow DAG runs the following DBT commands:
+O projeto DBT de exemplo cria uma view simples baseada na tabela `information_schema.tables` no banco de dados PostgreSQL. O DAG do Airflow executa os seguintes comandos DBT:
 
-1. `dbt debug`: Checks if DBT can connect to the database
-2. `dbt compile`: Compiles the SQL but doesn't run it
-3. `dbt run`: Runs the models
-4. `dbt test`: Runs tests on the models
-5. `dbt docs generate`: Generates documentation for the models
+1. `dbt debug`: Verifica se o DBT pode se conectar ao banco de dados
+2. `dbt compile`: Compila o SQL mas não o executa
+3. `dbt run`: Executa os modelos
+4. `dbt test`: Executa testes nos modelos
+5. `dbt docs generate`: Gera documentação para os modelos
 
-## Customizing
+## Personalização
 
-To customize this project for your own use:
+Para personalizar este projeto para seu próprio uso:
 
-1. Modify the DBT models in `dbt_project/models/`
-2. Update the DBT project configuration in `dbt_project/dbt_project.yml`
-3. Update the database connection in `dbt_project/profiles.yml`
-4. Modify the Airflow DAG in `dags/dbt_example_dag.py`
+1. Modifique os modelos DBT em `dbt_project/models/`
+2. Atualize a configuração do projeto DBT em `dbt_project/dbt_project.yml`
+3. Atualize a conexão com o banco de dados em `dbt_project/profiles.yml`
+4. Modifique o DAG do Airflow em `dags/dbt_example_dag.py`
 
-## Additional Resources
+## Casos de Uso
 
-- [DBT Documentation](https://docs.getdbt.com/)
-- [Apache Airflow Documentation](https://airflow.apache.org/docs/)
+Este projeto pode ser adaptado para diversos casos de uso, como:
+- ETL/ELT para data warehouses
+- Preparação de dados para análise
+- Transformação de dados para dashboards
+- Validação e testes de qualidade de dados
+
+## Recursos Adicionais
+
+- [Documentação do DBT](https://docs.getdbt.com/)
+- [Documentação do Apache Airflow](https://airflow.apache.org/docs/)
