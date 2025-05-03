@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: sample_model
+    description: "A sample model that lists tables in the public schema"
+    columns:
+      - name: table_name
+        description: "The name of the table"
+      - name: table_schema
+        description: "The schema of the table"
+      - name: description
+        description: "A sample description field"
